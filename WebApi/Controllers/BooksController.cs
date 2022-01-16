@@ -3,17 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using WebApi.DBOperations;
+using WebApi.BookOperations.GetBooks;
+using WebApi.BookOperations.CreateBook;
 
 namespace WebApi.AddControllers{
 
     [ApiController]
     [Route("api/[controller]")]
     public class BooksController:Controller{
-        // private static List<Book> BookList =new List<Book>(){
-        //     new Book{Id=1,Title="Learn Startup",GendreId=1,PageCount=200,PublishDate=new DateTime(2000,10,10)},
-        //     new Book{Id=2,Title="Herland",GendreId=2,PageCount=250,PublishDate=new DateTime(2010,5,20)},
-        //     new Book{Id=3,Title="Dune",GendreId=2,PageCount=2540,PublishDate=new DateTime(2020,5,20)},
-        // };
+ 
         private readonly BookStoreDbContext _context;
 
         public BooksController(BookStoreDbContext context)
@@ -22,20 +20,32 @@ namespace WebApi.AddControllers{
         }
         [HttpGet]
         public IActionResult Get(){
-            var bookList =_context.Books.OrderBy(b=>b.Id);
-            if(bookList is null)
+            GetBooksQuery query = new GetBooksQuery(_context);
+            var result = query.Handle();
+            if(result is null)
                 return BadRequest();
-            return Ok(bookList);
+            return Ok(result);
         }
          [HttpGet("{id}")]
         public IActionResult GetById(int id){
-            var book =_context.Books.Where(b=>b.Id==id).SingleOrDefault();
+            var book = new GetBooksQuery(_context).HandleById(id);
             return Ok(book);
         }
         [HttpPost]
-        public IActionResult AddBook([FromBody]Book newBook){
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
+        public IActionResult AddBook([FromBody]CreateBookModel bookModel){
+            CreateBookCommand command = new CreateBookCommand(_context);
+            try
+            {
+                command.Model = bookModel;
+                command.Handle();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+           
+
             return Ok();
         }
         [HttpPut("{id}")]
