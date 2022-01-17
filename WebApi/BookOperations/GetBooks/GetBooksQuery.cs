@@ -7,7 +7,7 @@ using WebApi.DBOperations;
 
 namespace WebApi.BookOperations.GetBooks
 {
-    public class GetBooksQuery
+    public partial class GetBooksQuery
     {
         private readonly BookStoreDbContext _dbcontext;
         public GetBooksQuery(BookStoreDbContext context)
@@ -25,21 +25,6 @@ namespace WebApi.BookOperations.GetBooks
                 vm.Add(new BooksViewModel { Title = book.Title,Gendre=((GendreEnum)book.GendreId).ToString(), PageCount = book.PageCount, PublishDate = book.PublishDate.Date.ToString("dd/MM/yyyy") });
             }
             return vm;
-        }
-        public BooksViewModel HandleById(int id)
-        {
-            var book = _dbcontext.Books.SingleOrDefault(b => b.Id == id);
-            BooksViewModel vm = new BooksViewModel() { Title = book.Title, Gendre = ((GendreEnum)book.GendreId).ToString(), PageCount = book.PageCount, PublishDate = book.PublishDate.Date.ToString("dd/MM/yyyy") };
-            return vm;
-        }
-
-        public class BooksViewModel {
-          
-            public string Title { get; set; }
-            public string Gendre { get; set; }
-            public int PageCount { get; set; }
-            public string PublishDate { get; set; }
-
         }
     }
 }
