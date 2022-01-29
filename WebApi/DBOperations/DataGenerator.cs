@@ -22,6 +22,9 @@ namespace WebApi.DBOperations
                     new Genre { Name = "PersonalGrowth" },
                     new Genre { Name = "ScienceFiction" },
                     new Genre { Name = "Noval" });
+                context.Authors.AddRange(
+                    new Author { FirstName="Orhan", LastName="Pamuk", BirthDate=DateTime.Parse("07/07/1952") }
+                    );
 
                 context.Books.AddRange(
                     new Book { Title = "Learn Startup", GendreId = 1, PageCount = 200, PublishDate = new DateTime(2000, 10, 10) },

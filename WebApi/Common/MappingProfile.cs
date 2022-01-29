@@ -10,6 +10,8 @@ using WebApi.Entities;
 using WebApi.Application.GenreOperations.Queries.GetGenreDetail;
 using WebApi.Application.GenreOperations.Queries.GetGenres;
 using static WebApi.Application.GenreOperations.Queries.GetGenres.GetGenresQuery;
+using WebApi.Application.AuthorOperations.Queries.GetAuthors;
+using WebApi.Application.AuthorOperations.Commands.CreateAuthor;
 
 namespace WebApi.Common
 {
@@ -24,6 +26,10 @@ namespace WebApi.Common
 
             CreateMap<Genre, GenreViewModel>();
             CreateMap<Genre, GenreDetailViewModel>();
+
+            CreateMap<Author, AuthorsViewModel>().ForMember(dest=>dest.BirthDate,opt =>opt.MapFrom(src=>src.BirthDate.Date.ToShortDateString()));
+
+            CreateMap<CreateAuthorModel, Author>();
         }
     }
 }
