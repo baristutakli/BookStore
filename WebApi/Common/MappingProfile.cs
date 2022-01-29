@@ -3,9 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.BookOperations.CreateBook;
-using static WebApi.BookOperations.GetBookDetail.GetBookDetailQuery;
-using static WebApi.BookOperations.GetBooks.GetBooksQuery;
+using WebApi.Application.BookOperations.Commands.CreateBook;
+using static WebApi.Application.BookOperations.Queries.GetBookDetail.GetBookDetailQuery;
+using static WebApi.Application.BookOperations.Queries.GetBooks.GetBooksQuery;
+using WebApi.Entities;
+using WebApi.Application.GenreOperations.Queries.GetGenreDetail;
+using WebApi.Application.GenreOperations.Queries.GetGenres;
+using static WebApi.Application.GenreOperations.Queries.GetGenres.GetGenresQuery;
 
 namespace WebApi.Common
 {
@@ -15,8 +19,11 @@ namespace WebApi.Common
         {
             CreateMap<CreateBookModel, Book>();
             /// Createbook objesi book objesine maplenebilir
-            CreateMap<Book, BookDetailViewModel>().ForMember(dest => dest.Gendre, opt => opt.MapFrom(src => ((GendreEnum)src.GendreId).ToString()) );
-            CreateMap<Book, BooksViewModel>().ForMember(dest => dest.Gendre, opt => opt.MapFrom(src => ((GendreEnum)src.GendreId).ToString()));
+            CreateMap<Book, BookDetailViewModel>().ForMember(dest => dest.Gendre, opt => opt.MapFrom(src => src.Gendre.Name) );
+            CreateMap<Book, BooksViewModel>().ForMember(dest => dest.Gendre, opt => opt.MapFrom(src => src.Gendre.Name));
+
+            CreateMap<Genre, GenreViewModel>();
+            CreateMap<Genre, GenreDetailViewModel>();
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿namespace WebApi.BookOperations.GetBookDetail
+﻿namespace WebApi.Application.BookOperations.Queries.GetBooks
 {
-    public partial class GetBookDetailQuery
+    public partial class GetBooksQuery
     {
-        public class BookDetailViewModel
-        {
-
+        public class BooksViewModel {
+          
             public string Title { get; set; }
             public string Gendre { get; set; }
             public int PageCount { get; set; }
