@@ -26,8 +26,8 @@ namespace WebApi.Application.AuthorOperations.Queries.GetAuthorDetail
                 throw new InvalidOperationException("Invalid Id because Author is not found");
             }
 
-            return _mapper.Map<AuthorDetailViewModel>(author);
-
+            AuthorDetailViewModel vm = _mapper.Map<AuthorDetailViewModel>(author);
+            return vm;
         }
     }
 }
