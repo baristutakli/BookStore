@@ -3,11 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{AACF9BDF-F134-40F0-879A-FE4DFC341FCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{AACF9BDF-F134-40F0-879A-FE4DFC341FCB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{06A4A5DC-CE59-437C-B244-E7E56ED547EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.UnitTests", "Tests\WebApi.UnitTests\WebApi.UnitTests.csproj", "{44FB7EF5-3C4C-4A2C-B978-311AE966C683}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi.UnitTests", "Tests\WebApi.UnitTests\WebApi.UnitTests.csproj", "{44FB7EF5-3C4C-4A2C-B978-311AE966C683}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{7C5F1C80-DF5B-44DD-98F1-C0B441BCFEF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookOperations", "BookOperations", "{75E6EF46-506D-4CDA-863F-772433F9A0C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{169C9F66-5BB5-421C-A705-2802B65BD536}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CreateCommand", "CreateCommand", "{B359AB87-C3FF-4F3E-9077-C63DF70D6D54}"
+	ProjectSection(SolutionItems) = preProject
+		CreateCommandTests.cs = CreateCommandTests.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +28,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AACF9BDF-F134-40F0-879A-FE4DFC341FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,7 +55,17 @@ Global
 		{44FB7EF5-3C4C-4A2C-B978-311AE966C683}.Release|x86.ActiveCfg = Release|Any CPU
 		{44FB7EF5-3C4C-4A2C-B978-311AE966C683}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{44FB7EF5-3C4C-4A2C-B978-311AE966C683} = {06A4A5DC-CE59-437C-B244-E7E56ED547EF}
+		{7C5F1C80-DF5B-44DD-98F1-C0B441BCFEF9} = {06A4A5DC-CE59-437C-B244-E7E56ED547EF}
+		{75E6EF46-506D-4CDA-863F-772433F9A0C4} = {7C5F1C80-DF5B-44DD-98F1-C0B441BCFEF9}
+		{169C9F66-5BB5-421C-A705-2802B65BD536} = {75E6EF46-506D-4CDA-863F-772433F9A0C4}
+		{B359AB87-C3FF-4F3E-9077-C63DF70D6D54} = {169C9F66-5BB5-421C-A705-2802B65BD536}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70C78363-AB4C-4F1E-B8C6-2791473BF59A}
 	EndGlobalSection
 EndGlobal
